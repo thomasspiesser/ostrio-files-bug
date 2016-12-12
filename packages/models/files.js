@@ -7,6 +7,12 @@ const Files = new FilesCollection({
     debug: true,
     collectionName: 'files',
     protected(fileObj) {
+        var session = this.params.query.xmtok;
+        var userId  = (Meteor.server.sessions[session] && Meteor.server.sessions[session].userId) ? Meteor.server.sessions[session].userId : null;
+        this.userId = userId;
+        this.user   = function () {
+            return userId;
+        };
         console.log('this.userId', this.userId);
         console.log('this.user()', this.user());
         if (fileObj) {
