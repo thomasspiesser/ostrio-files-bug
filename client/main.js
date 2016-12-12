@@ -7,6 +7,9 @@ import './main.html';
 Template.uploadedFiles.helpers({
   uploadedFiles: function () {
     return Files.find();
+  },
+  sess: function () {
+    return (Meteor.connection && Meteor.connection._lastSessionId) ? Meteor.connection._lastSessionId : null;
   }
 });
 
